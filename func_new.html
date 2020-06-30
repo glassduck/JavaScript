@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        var square=function(x){ return x*x;};
+        var square1=(x)=>{return x*x;};
+        var square2=(x,y,z)=>{return x*y*z;};
+        var square3=x=>{return x*x;}; //인수 한 개일 때만 가능
+        var f=()=>{return console.log('a')};
+        var square4=x=>x*x;//return만 있을때.
+        var f1=(a,b)=>({x:a,y:b});     //리터럴이면 return만 있어도 괄호 써야 함.
+        (x=>x*x)(3);
+
+        var obj={
+            say :function(){
+                console.log(this);
+                var f=function(){console.log(this);};
+                f();
+                var g=()=>console.log(this);
+                g();
+            }
+        }
+        obj.say();
+
+        var f=function(){console.log(this.name);};
+        var g=()=>console.log(this.name);
+        var tom={name:"tom"};
+        f.call(tom);
+        g.call(tom);
+        var f=()=>console.log(arguments);
+        //f();//reference error. 변수가 정의되어 있지 않으므로 정의되는 순간 없으면 꽝!
+
+        var Person=(name,age)=>{this.name=name,this.age=age;};
+        //var tom=new Person("Tom",17);   //constructor 사용 불가.
+
+        var f=function (a,b,...args){
+            console.log(a,b,args);
+        }
+        f(1,2,3,4,5,6);
+    </script>
+</body>
+</html>

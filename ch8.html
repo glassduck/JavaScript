@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        
+    </script>
 </head>
 <body>
     <script>
@@ -38,6 +41,102 @@
         var a=[7,2,5,1,8,9,3];
         quicksort(a,0,a.length-1);
         console.log(a);
+
+        function makeCounter(){
+            var count=0;
+            return f;
+            function f(){
+                return count++;
+            }
+        }
+        var counter=makeCounter();
+        console.log(counter());
+        console.log(counter());
+
+        function Person(name,age){
+            var _name=name;
+            var _age=age;
+            return{
+                getName: function(){return _name;},
+                getAge: function(){return _age;},
+                setAge: function(x){_age=x;},
+            };
+        }
+        var person=Person("Tom",18);
+        console.log(person.getName());
+        console.log(person.getAge());
+        person.setAge(19);
+        console.log(person.getAge());
+
+        function makeMultiplier(x){
+            return function(y){
+                return x*y;
+            }
+        }
+        var multi2=makeMultiplier(2);
+        var multi10=makeMultiplier(10);
+        console.log(multi2(3));
+        console.log(multi10(5));
+
+        function Primes(n){
+            var p=[];
+            for(var i=2;i<=n;i++)p[i]=true;
+            var max=Math.floor(Math.sqrt(n));
+            var x=2;
+            while(x<=max){
+                for(var i=2*x;i<=n;i+=x)p[i]=false;
+                while(!p[++x]);
+            }
+            var primes=[],nprimes=0;
+            for(var i=2;i<=n;i++) if(p[i]) primes[nprimes++]=i;
+            p=null;
+            return function(m){
+                for(var i=0,product=1;i<m;i++){
+                    product*=primes[Math.floor(Math.random()*nprimes)];
+                }
+                return product;
+            }
+        }
+        var primeProduct=Primes(100000);
+        console.log(primeProduct(2));
+        console.log(primeProduct(2));
+
+        // window.onload = function(){          문제 사항. onclick이 for문이 다 끝난 후 동작하므로 3만 출력.
+        //     var elm=document.getElementsByTagName("input");
+        //     for(var i=0;i<elm.length;i++){
+        //         elm[i].onclick=function(){
+        //             console.log(i);
+        //         }
+        //     }
+        // }
+
+        // window.onload = function(){         //해결방법 1
+        //     var elm=document.getElementsByTagName("input");
+        //     for(var i=0;i<elm.length;i++) (function (_i){
+        //         elm[_i].onclick=function(){
+        //             console.log(_i);
+        //         }
+        //     })(i);
+        // }
+
+        window.onload = function(){         //해결방법2
+            var elm=document.getElementsByTagName("input");
+            for(let i=0;i<elm.length;i++){
+                elm[i].onclick=function(){
+                    console.log(i);
+                }
+            }
+        }
+        // for (var _i=0;i<elm.length;_i++){       //let은 블록 단위 유효 범위를 가짐.
+        //     let i=_i;   //즉, 반복문이 실행될 때마다 새로운 선언 후 값을 대입.
+        //     elm[i].onclick=function(){
+        //         console.log(i);
+        //     };
+        // }
+        
     </script>    
+    <input type="button",value="0">
+    <input type="button",value="1">
+    <input type="button",value="2">
 </body>
 </html>
