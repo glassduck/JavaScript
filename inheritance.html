@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var obj={};
+        console.log(obj.__proto__);
+
+        var objA={
+            name : 'Tom',
+            sayHello : function(){console.log("Hello"+this.name);}
+        };
+        var objB={
+            name : 'Huck'
+        };
+        objB.__proto__=objA;
+        var objC={}
+        objC.__proto__=objB;
+        objC.sayHello();
+        
+        function F(){}
+        var obj=new F();
+        console.log(Object.getPrototypeOf(obj));
+
+        function Circle(center,radius){
+            this.center=center;
+            this.radius=radius;
+        }
+        Circle.prototype.area=function(){
+            return Math.PI*this.radius*this.radius;
+        }
+        var c= new Circle({x:0,y:0},2.0);
+
+        //위 절차가 내부적으로는 이렇게 구현됨.
+        // var newObj={};
+        // newObj.__proto__=Circle.prototype;  //프로토타입을 상속받음
+        // Circle.apply(newObj,arguments);
+        // return newObj;
+
+        function G(){};
+        console.log(G.prototype.constructor);
+
+        function H(){
+            console.log(H.prototype.__proto__);
+        }
+
+        function Circle(center,radius){
+            this.center=center;
+            this.radius=radius;
+        }
+        Circle.prototype={
+            constructor : Circle,   //constructor를 써주지 않으면 인스턴스와 생성자 사이에 연결고리가 끊어짐.
+            area : function(){return Math.PI*this.radius*this.radius;}
+        };
+        var c=new Circle({x:0,y:0},2.0);
+        console.log(c.constructor);
+        console.log(c instanceof Circle);
+
+        function Circle(center,radius){
+            this.center=center;
+            this.radius=radius;
+        }
+        var c=new Circle({x:0,y:0},2.0);
+        Circle.prototype={
+            constructor : Circle,   
+            area : function(){return Math.PI*this.radius*this.radius;}
+        }
+        c.area();   //생성된 이후 시점의 프로토 타입을 바꾸는 것은 상속되지 않음
+
+        Circle.prototype.area=function(){return Math.PI*this.radius*this.radius;}   //프로퍼티 추가는 상속됨.
+
+        function T(){};
+        var obj=new T();
+        console.log(obj instanceof T);
+        console.log(obj instanceof Object);
+        console.log(obj instanceof Date);
+        
+        var day=new Date();
+        console.log(day.getMonth());    //day의 prototype도 상속받지만
+        console.log(day.hasOwnProperty("length"));      //object의 프로토타입도 덩달아 상속.
+
+        var person1={
+            name:"Tom",
+            sayHello:function(){console.log("Hello!"+this.name);}
+        };
+        var person2=Object.create(person1);     //프로토타입 지정 가능.
+        person2.name="Huck";
+        person2.sayHello();
+        
+        var blankObject=Object.create(null);    //백지 객체 생성. object의 프로토타입 조차 상속받지 않음.
+        
+        var obj=Object.create(Object.prototype) //이러면 객체 리터럴로 생성한 var obj={}랑 동일하게 됨.
+
+        var person={
+            _name : "Tom",
+            get name(){
+                return this._name;
+            },
+            set name(value){
+                var str=value.charAt(0).toUpperCase()+value.substring(1);
+                this._name=str;
+            }
+        };
+        console.log(person.name);
+        person.name="huck";
+        console.log(person.name);
+
+        var point={
+            x : 1.0,
+            y : 1.0,
+            get r(){return Math.sqrt(this.x*this.x+this.y*this.y);},
+            get theta(){return Math.atan2(this.y,this.x);},
+            set polarCoordinates(pc){
+                this.x=pc.r*Math.cos(pc.theta);
+                this.y=pc.r*Math.sin(pc.theta);
+            }
+        }
+        console.log(point.r);
+        console.log(point.theta);
+        point.polarCoordinates={r:2,theta:Math.PI/4};
+        console.log(point);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
