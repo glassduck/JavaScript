@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var person={name:"Tom"};
+        Object.preventExtensions(person);   //확장 불가!
+        person.age=17;  //이 커맨드 무시해버림!
+        console.log("age" in person);
+        console.log(Object.isExtensible(person));
+
+        var person={name:"Tom"};
+        Object.seal(person)
+        person.age=17;  
+        delete person.name;
+        Object.defineProperty(person,"name",{enumerable:false});
+        console.log("name" in person);
+        console.log("age" in person);
+        console.log(Object.getOwnPropertyDescriptor(person,"name"));
+        person.name="Huck";
+        console.log(person);
+        console.log(Object.isSealed(person))
+
+        function mixin(target,source){
+            for(var property in source){
+                if(source.hasOwnProperty(property)){
+                    target[property]=source[property];  //덮어쓰거나 추가! 얕은 복사. 즉, 참조만 복사하는 것.
+                }
+            }
+            return target;
+
+            var obj1={a:1,b:2};
+            var obj2={c:3,d:4};
+            var obj=mixin(obj1,obj2);
+            console.log(obj);
+        }
+        
+        var person1 = {
+            _name : "Tom" ,
+            get name(){
+                return this.name;
+            }
+        };
+        var person2={};
+        mixin(person2,person1);
+        person2.name="Huck";
+        console.log(person2.name);
+        console.log(person2);
+
+        function mixin(target,source){
+            var keys=Object.keys(source);
+            for(var i=0;i<keys.length;i++){
+                var descriptor=Object.getOwnPropertyDescriptor(source,keys[i]);
+                Object.defineProperty(target,keys[i],descriptor);
+            }
+            return target
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

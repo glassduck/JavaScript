@@ -105,9 +105,40 @@
             console.log(Object.prototype.propertyIsEnumerable("toString")); //object.proto도 결국 상속받은 거니까.
 
             for (var p in person2) console.log(p);
+
+            var person1={name : "Tom",age : 17}
+            var person2=Object.create(person1);
+            person2.name="Huck";
+            for(var p in person2) console.log(p);
+
+            var a=[2,4,6,8];
+            a.name="evens";
+            for(var i in a)console.log(i)   // 0,1,2,3,name 즉, array의 요소는 프로퍼티. 인덱스는 프로퍼티 이름.
+
+            for(var p in obj){
+                if(!.obj.hasOwnProperty(p)) continue;   //이런 식으로 불필요한 메서드가 열리는 것을 방지.
+            }
+            for(var p in obj){
+                if(typeof(p)==="function") continue;
+            }
+
+            var group={groupName:"Tenis Circle"};
+            var person=Object.create(group);
+            person.name="Tom";
+            person.age=17;
+            person.sayHello=function(){console.log("Hello !"+this.name)};
+            Object.defineProperty(person,"sayHello",{enumerable:false});
+            console.log(Object.keys(person))
+
+            var p=Object.keys(person);  //소유한 프로퍼티 조회 용도는 object.keys가 적합
+            for(var i=0;i<p.length;i++){
+                console.log(person[p[i]]);
+            }
+
+            console.log(Object.getOwnPropertyNames(person));    //열거할 수 없는 프로퍼티 이름도 배열로!
     </script>
 </head>
 <body>
         
 </body>
-</html>
+</html>;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        '{"name" : "Tom", "age" : 17, "marriage" : false, "data" : [2,5,null]}'' //key값에 큰따옴표가 붙는구먼!
+        //JSON.stringify(value[,replacer[,space]])
+        JSON.stringify({});
+        JSON.stringify(3.14);
+        JSON.stringify("abc");
+        JSON.stringify(true);
+        JSON.stringify([2,4,null]);
+        JSON.stringify({x:1,y:2});
+        JSON.stringify({x:1,y:2,z:3},["x","z"]);
+        JSON.stringify({x:1,y:2},null,'\t');
+
+        //JSON.parse(text[,reviver])
+        JSON.parse('{}');
+        JSON.parse('3.14');
+        JSON.parse('"abc"');
+        JSON.parse('true');
+        JSON.parse('[2,4,null]');
+        JSON.parse('{"x":1,"y":2}');
+        var o={name:"Tom",age:17,marriage:false,data:[2,5,null]}
+        var s=JSON.stringify(o);
+        var p=JSON.parse(s);
+
+        var obj={};
+        var s=Symbol("heart");
+        obj[s]=3;
+        console.log(obj);
+
+        var obj={[Symbol("heart")]:"A"};
+
+        Array.prototype[Symbol.for("shuffle")]=function(){
+            var a=this;
+            var m=a.length,t,i;
+            while(m){
+                i=Math.floor(Math.random()*m--);
+                t=a[m];a[m]=a[i];a[i]=t;
+            }
+            return this;
+        };
+        var array=[0,1,2,3,4,5,6,7,8,9];
+        console.log(array[Symbol.for("shuffle")]());
+
+        var prop="name",i=1;
+        var obj={[prop+i]:"Tom"};   //문자열일 경우 평가된 값을 표현 해줌
+        console.log(obj);   // name1: Tom
+        var obj={[Symbol("heart")] : "A"};  //심볼일 경우 그대로 사용
+        console.log(obj);
+        
+        var prop=2;
+        var obj={prop}; //프로퍼티와 변수 이름이 같으면 변수이름만으로도 표현 가능.
+        console.log(obj);
+
+        var person={
+            name : "Tom",
+            sayHello(){console.log("Hello"+this.name);}
+        };
+        person.sayHello();  //함수 약식도 생김.
+    
+        var obj={
+            *range(n){for(var i=0;i<n;i++) yield i;}
+        };
+        var it=obj.range(10);
+        console.log(it.next().value);
+        console.log(it.next().value);
+
+    </script>
+</body>
+</html>
