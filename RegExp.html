@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var reg=new RegExp("abc");
+    var reg=/abc/;
+
+    var reg=/cat/;
+    console.log(reg.test("cats and dogs")); //true
+    console.log(reg.test("Cats"));  //false
+
+    var reg=/Script/;
+    var result=reg.exec("JavaScript");
+    result[0]   //Script
+    result.index //맨 처음 정규표현식이 등장하는 index
+    result.input    //일치하는 전체 문자열
+
+    var reg=/\d+/
+    var reg=new RegExp("\\d+"); //이 함수 안에서는 2번 써야한대!
+
+    var findBackSlash=new RegExp("\\\\")    //백슬래쉬 찾으려면 이러케 해야함 ㅋㅋ
+
+    [-ab] //이러면 - a b 셋 중 하나라는 말. 하이푼은 연속되는 문자열 사이에 위치해야 함.
+    /c.t/   //cat~
+    /c..l/  //cool~
+    \D : 숫자 외 문자
+    \w: 숫자, 알파벳 대소문자, 언더스코어 등
+    \s : 공백,탭,개형 문자 등
+
+    /[a-z]{6,12}/ //알파벳 6~12자리
+    </script>
+</body>
+</html>

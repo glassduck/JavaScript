@@ -84,6 +84,79 @@
         var a_unit16=new Uint16Array(buffer);
         a_unit8[0]=170;
         a_unit16[0];    //같은 buffer를 공유하므로 8을 바꾸면 16도 바뀐다!
+
+        var buffer=new ArrayBuffer(16);
+        var a=new Int8Array(buffer,2,5);
+        console.log(a.byteOffset)
+
+        buffer=new ArrayBuffer(24);
+        var person={
+            id:new Uint32Array(buffer,0,1),
+            name:new Uint8Array(buffer,4,16),
+            weight:new Float32Array(buffer,20,1)
+        }
+
+        var map=new Map();
+        console.log(map);
+
+        var zip=new Map([["Tom","131-8634"],["Huck","556-9892"]]);
+        console.log(zip);
+
+        function* makeZip(){
+            yield ["Tom","131-8634"];
+            yield ["Huck","556-9892"];
+        }
+        var zips=makeZip();
+        zip=new Map(zips);
+        console.log(zip);
+        console.log(zip.size);
+
+        var zip=new Map();
+        zip.set("Tom","131-8473");
+        zip.set("Hycj","5342-234");
+        console.log(zip);
+        console.log(zip.get("Tom"));
+        zip.clear();
+
+        var iter=zip.values();
+        for(var v of iter)console.log(v);
+        zip.forEach(function(value,key,map){
+            console.log(key+"=>"+value);
+        });
+
+        var set=new Set();
+        console.log(set);
+        function* makeZip(){
+            yield ["Tom","131-8634"];
+            yield ["Huck","556-9892"];
+        }
+        var zips=makeZip();
+        zip=new Set(zips);
+        console.log(zip);
+        console.log(zip.size);
+
+        var zip=new Set();
+        zip.add("132-2343");
+        zip.add("213-2323");
+        console.log(zip);
+
+        console.log(zip.has("132-2343"))    //true
+
+        zip.delete("123-1232");
+        zip.clear();
+
+        var zip=new Set([["Tom","131-8634"],["Huck","556-9892"]]);
+        var iter=zip.keys();
+        for(var v of iter)console.log(v);
+
+        var iter=zip.entries(); //이것도 값,값의 구조.
+        for(var v of iter)console.log(v);
+
+        for(var v of zip)console.log(v);
+
+        zip.forEach(function(value1,value2,map){    //값,값의 구조...왜 2번 반복이냐? 다른 것들과 맞춰주기 위해...다른 것들은 key : value..
+            console.log(value1+"=>"+value2);    
+        })
     </script>
 </head>
 <body>

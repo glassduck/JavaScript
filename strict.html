@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function f(x){  //함수든 문장이든 어디든 첫머리!
+            use="strict";
+            y=x;
+        }
+        f(2);
+    </script>
+    <script>
+        // "use strict"
+    </script>
+    <script>
+        x=2;    //strict는 스크립트 단위 적용!
+    </script>
+    <script>
+        function f(){
+            function g(){
+                function h(){
+                    console.trace();
+                }
+                h();
+            }
+            g();
+        }
+        f();
+    </script>
+    <script>
+        //exception
+        function permutation(a){
+            if(!a instanceof Array){
+                throw new Error(a+"is not an array");
+            }
+            return a.reduce(function(list,element){
+            var newlist=[];
+            list.forEach(function(seq){
+                for(var i=seq.length;i>=0;i--){
+                    var newseq=[].concat(seq);
+                    newseq.splice(i,0,element);
+                    newlist.push(newseq);
+                }
+            });
+            return newlist;
+            },[[]]);
+        };
+        permutation("123");
+
+        if(typeof callback!="function") throw new Error(callback+"is not a function");  //func는 구분 가능하나 나머지는 전부다 object로 표시되어서 애매.
+        if(!(map instanceof Map)) throw new Error(map+"is not a Map object");   //이 연산자를 그럴 땐 사용하도록!
+        Array.isArray(a);   //array 판별
+    </script>
+    <script>
+        x++;    //reference error 변수 정의가 되어있찌 않음
+        if(a>0){a++ //syntax error라는데 괄호 끝날 때까지 아예 실행이 안됨.
+        var obj={};
+        obj.join(); //type error 메소드가 정의되어 있지 않음!
+        var pi=3.141592;
+        pi.toFixed(100);    //error여야 하는데 되네....뭐지 바뀐건가...
+        decodeURIComponent("%")
+        }
+
+        var error=new TypeError("is not an array");
+        console.log(error.message);
+        console.log(error.name);
+        console.log(error.toString());
+
+        try{
+            var p=permutation(t);
+            p.forEach(function(v){console.log(v);});
+        } catch(e){
+            alert(e);
+        }
+
+        try{
+            f();
+        } catch(e){
+            console.log("예외를 캐치함->"+e);
+        }
+        function f(){g();}
+        function g(){h();}
+        function h(){throw new Error("오류가 발생했습니다")};
+
+        try{
+            setTimeout(function throwError(){
+                throw new Error("오류발생!")
+            },1000);
+        } catch(e){
+            console.log("예외를 캐치함->"+e);
+        }
+
+        function sleepAndError(g,n){
+            setTimeout(function(){
+                for(var i=0;i<n;i++) console.log(i);
+                g.throw(new Error("오류 발생~!"));
+            },1000);
+        }
+        function run(callback,...argsList){
+            var g=(function*(cb,args){
+                try{
+                    yield cb(g,...args);
+                }catch(e) {
+                    console.log("예외를 잡음->"+e)
+                }
+            })(callback,argsList);
+            g.next();
+        }
+        run(sleepAndError,10)
+        var a=[0,1,2,3,4,5,6,7,8,9];
+        try {
+            a.forEach(function(v,i,a){
+                if(i>5){
+                    throw false;
+                }
+                return a[i]=v*v;
+            });
+        }catch(e){
+            if(e) throw e;
+        }
+        console.log(a);
+    </script>
+</body>
+</html>
