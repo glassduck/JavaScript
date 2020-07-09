@@ -32,6 +32,82 @@
     \s : 공백,탭,개형 문자 등
 
     /[a-z]{6,12}/ //알파벳 6~12자리
+
+    var header=/<h[1-6]>.*<\/h[1-6]>/
+    console.log(header.test("<h1>JavaScript</h1>"));
+    var header=/<(h[1-6])>.*<\/\1>/ //이러면 \1은 부분 정규표현식인 (h[1-6])을 참고하게 됨.
+    //근데 위의 경우, 전체 정규표현식도 나오지만 부분 정규표현식에 해당하는 h1도 또 따로 나오게 됨. 그걸 캡쳐링이라 함.
+    var postalcode=/(?:d{3})-(?:/d{3})/ //이래주면 캡쳐링도 나오지 않음.
+    var jsFirst=/^JavaScript/   //이러면 첫 단어가...
+    var jsLast=/JavaScript$/    //이러면 맨 마지막 단어가...
+    
+    /\scat\s/ //이러면 문장 앞이나 맨 뒤에 오는 cat은 인식 못함.
+    /\bcat\b/   //이래주면 문장 앞 뒤도 인식 가능. 단어 경계로 판단. 근데 한국어도 비단어...
+    /\Bcat\B/   //이래주면 영어 단어 경계 외...즉, 단어안에 cat을 포함하는...catch같은...
+
+    /Java(?=Script)/ // Java뒤에 Script가 나오는 패턴.
+    /Java(?!Script)/ // Java뒤에 Script가 안 나오는 패턴.
+
+    var animal= /apple|peach|orange/;
+    animal.test("2 apples");
+
+    var countFruits=/\b(\d+) (apple|peach|orange)s?\b/
+    var result=countFruits.exec("10 apples");
+    result  // 10 apples는 전체 정규표현식에 해당해서 가져오고 10이랑 apples는 각각 따로 부분 정규표현식에 의해 캡쳐링 된 것.
+    
+    var reg=/abc/gi //이런 식으로 플래그는 마지막/뒤에 여러개 붙여주면 됨.
+
+    var reg=/^cat/im;
+    console.log(reg.test("Dong\nCat\nMonkey")); //m을 쓰면 멀티라인을 인식하므로 ^를 붙이거나 $를 붙이는 것에 대응가능.
+    var reg=/at$/im;
+    console.log(reg.test("Dong\nCat\nMonkey"));
+
+    var s="1 little, 2 little indian";
+    console.log(s.search(/little/));    //little 첨 시작하는 index
+    console.log(s.search(/\d/));    //d가 첨 나오는 index
+    console.log(s.search(/\bindian/));  //i가 나오는 위치
+    console.log(s.search(/3\s/));   //-1 : 불일치.
+
+    console.log(s.replace(/indian/,"boy"));
+    console.log(s.replace(/little/,"big")); //첫 1개만 바뀜
+    console.log(s.replace(/little/g,"big"));   //2개다 바뀜
+
+
+    var person="Tom, tom@example.com, 010-2386-3344";
+    var result=person.replace(/0(\d{1,4}-\d{1,4}-\d{4})/g,"+82-$1")
+
+    var name="Tom Sawyer";
+    var result=name.replace(/(\w+)\s(\w+)/,"$2 $1");
+    console.log(result);
+
+    var address="151-755 서울 관악구"
+    var result=address.replace(/\d{3}-\d{3}/,"우편 : $&")   //$&은 정규표현식이 찾은 모든 값을 의미.
+
+    "1 little, 2 little indian".match(/\d+/g);  //배열을 반환하나 값을 저장하지는 않음.
+
+    console.log("132.234.234.243".split("."))
+
+    var names=" Momo Japan ; Sana Japan; Mina Japan";
+    var list=names.replace(/(^\s*|\s*$)/g,"").split(/\s*;\s*/);
+    console.log(list);
+
+    console.log("1 little, 2 little indian".split(/\s*(\d)\s*/));   //소괄호안에 있는 걸로 나뉨과 동시에 그것도 반환됨.
+    split(/asffasdf/,4) //최대 4개 까지만 배열 반환 한다는 뜻.
+
+    var tel=/(\d{2,5})-(\d{1,4})/;
+    var text1="Park : 123-4567";
+    var result=tel.exec(text1);
+    console.log(result);   
+    result.index;   //정규표현식 첫 등장 index
+    result.input;   //정규표현식 적용한 문자열 원본.
+    tel.lastIndex   //일치한 문자열 바로 다음 index..만약 정규표현식 일치하는게 여러개 있으면
+    //last index가 점점 뒤로 이동하게 됨. 그래서 함수 쓰면 regExp에서도 globally적용 가능.그리고 last index 0으로 초기화 하면 됨.
+
+    while((result=tel.exec(text))!=null){
+        console.log(result[0],result[1],result[2],result[3]);
+    }
+
+
     </script>
 </body>
 </html>
