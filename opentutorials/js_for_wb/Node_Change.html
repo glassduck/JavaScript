@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="target">
+        <li id="target2">HTML</li>
+        <li id="target1">CSS</li>
+    </ul>
+    <input type="button" onclick="callAppendChild();" value="appendChild()"/>
+    <input type="button" onclick="callInsertBefore();" value="callInsertBefore()">
+    <input type="button" onclick="callRemoveChild();" value="removeChild()">
+    <input type="button" onclick="callReplaceChild();" value="replaceChild()">
+    <script>
+        function callAppendChild(){
+            var target=document.getElementById('target');
+            var li=document.createElement('li');
+            var text=document.createTextNode('JavaScript');
+            li.appendChild(text);
+            target.appendChild(li); //이러면 맨 마지막에 붙음
+        }
+
+        function callInsertBefore(){
+            var target=document.getElementById('target');
+            var li=document.createElement('li');
+            var text=document.createTextNode('jQuery');
+            li.appendChild(text);
+            target.insertBefore(li,target.firstChild);  //ul의 first child는 저 꺽쇠 끝나고의 빈 공간.
+        }
+
+        function callRemoveChild(){
+            var target=document.getElementById('target1');
+            target.parentNode.removeChild(target);
+        }
+
+        function callReplaceChild(){
+            var a=document.createElement('a');
+            a.setAttribute('href','htts://www.naver.com');
+            a.appendChild(document.createTextNode('naver.com'));
+            
+            var target=document.getElementById('target2');
+            target.replaceChild(a, target.firstChild);  //target의 first child는 HTML
+            //li 하위에 a태그를 만드는 것이니까...아하!
+        }
+    </script>
+</body>
+</html>

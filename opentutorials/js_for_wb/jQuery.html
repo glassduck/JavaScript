@@ -3,14 +3,81 @@
 <head>
 </head>
 <body>
+</br>
+  <div class="target">
+    content1
+  </div>
+  <div class="target">
+    content2
+  </div>
+</br>
+  <div class="target1" id="target1">
+    target1
+  </div>
+  <div class="target1" id="target2">
+    target2
+  </div>
+</br>
+  <div class="target2" id="target3">
+    target3
+  </div>
+  <div class="target2" id="target4">
+    target4
+  </div>
+</br>
+  <div id="source">source</div>
+</br>
     <script
     src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
     crossorigin="anonymous"></script>
+
+    <input type="button" value="remove target1" id="btn1"/>
+    <input type="button" value="empty target2" id="btn2"/>
+  </br>
+    <input type="button" value="replaceAll target3" id="btn3"/>
+    <input type="button" value="replaceWith target4" id="btn4"/>
+  </br>
+    <input type="button" value="clone replaceAll target3" id="btn5"/>
+    <input type="button" value="clone replaceWith target4" id="btn6"/>
+  </br>
+    <input type="button" value="append source to target4" id="btn7"/>
+
     <script>
     jQuery( document ).ready(function( $ ) {
       $('body').prepend('<h1>Hello world</h1>'); //body는 prepend의 선택자. prepend의 jQuery 객체의 method인셈
     }); //$('body')가 jQuery 함수이고 그것이 return하는 게 jQuery 객체.
+    </script>
+    <script>
+      $('.target').before('<div>before</div>');
+      $('.target').after('<div>after</div>');
+      $('.target').prepend('<div>prepend</div>');
+      $('.target').append('<div>append</div>');
+
+      $('#btn1').click(function(){
+        $('#target1').remove();   //아예 날려버림
+      })
+      $('#btn2').click(function(){
+        $('#target2').empty();    //태그는 살아있음
+      })
+
+      $('#btn3').click(function(){
+        $('<div>replaceAll</div>').replaceAll('#target3') //바꿀 객체를 인수로
+      })
+      $('#btn4').click(function(){
+        $('#target4').replaceWith('<div>replaceWith</div>') //바꿀 내용을 인수로.
+      })
+
+      $('#btn5').click(function(){
+        $('#source').clone().replaceAll('#target3');
+        })
+      $('#btn6').click(function(){
+        $('#target4').replaceWith($('#source').clone());
+        })
+
+      $('#btn7').click(function(){
+        $('#target4').append($('#source'));
+        })
     </script>
 </body>
 </html>
