@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <script>
+        var str="a";
+        var pattern=/a/;
+        var pattern= new RegExp('a');
+        pattern.exec('abc') //정보 추출
+        var pattern=/a./;
+        pattern.test('abced'); // true or false (Boolean)
+
+        var str='abcdef';
+        str.match(pattern);
+        str.replace(pattern,'A');
+
+        var oi= /a/i
+        "Abcde".match(oi); //대소문자 구분 없이 문자에 포함된 a를 찾아줌.
+
+        var og=/a/g;
+        "abcdea".match(og); //갯수 상관없이 찾아줌
+
+        var ig=/a/ig;
+        "AabcdeaA".match(ig) //갯수 상관없이 해당하는 모든 걸 찾아줌.
+
+        var pattern=/(\w+)\s(\w+)/;
+        var str='coding everybody';
+        var result=str.replace(pattern,"$2, $1");
+        console.log(result)
+
+        var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+        var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+        var result = content.replace(urlPattern, function(url){
+            return '<a href="'+url+'">'+url+'</a>';
+            });
+        console.log(result);
+    </script>
+</body>
+</html>

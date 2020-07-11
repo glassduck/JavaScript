@@ -1,0 +1,29 @@
+<script>
+var vscope = 'global'; //전역변수
+
+function fscope(){
+    var vscope = 'local'; //지역변수
+    alert('함수안 '+vscope);
+}
+fscope(); //local이라고 뜸
+
+function fscope1(){
+    alert(vscope);
+}
+fscope1(); //global이라고 뜸
+
+
+var vscope = 'global';
+function fscope(){
+    vscope = 'local'; //var을 안 쓰면 global (전역) 변수를 변경하게 되기에 전역 변수가 뜬다.
+} 
+alert(vscope);//근데 전역 변수를 local로 변경했으니 로컬이라 뜸.
+
+var vscope = 'global';
+function fscope(){
+    var vscope = 'local'; //이러면 지역변수가 됨. 지역 변수를 먼저 확인하기 때문에
+    vscope = 'local';  //지역 변수가 있으면 지역 변수 우선! 따라서, 여기서는 var 안 써도 자동으로 지역변수 값 조정하는게 됨.
+    } 
+alert(vscope);//global이라 뜸.  함수는 지역 변수만 조정한 꼴이 되었으니!
+//지역 변수를 최대한 사용하려고 노력하자. 그래야 겹치지 않으니까.
+</script>

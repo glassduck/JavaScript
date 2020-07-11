@@ -1,0 +1,80 @@
+<script>
+function a (){
+    var i = 0;              //지역변수로 이용.
+}
+for(var i = 0; i < 5; i++){ 
+    a();
+    document.write(i);      //이건 전역 변수를 출력하고 있으므로 01234가 나오겠지
+}
+</script>
+
+<script>
+    function a (){
+        i = 0;                  //전역변수가 되어버리면
+    }
+    for(var i = 0; i < 5; i++){ 
+        a();                    //무한루프 됨. 계속 전역변수로 초기화 되니까.
+        document.write(i);
+    }
+</script>
+
+var 은 function scope이라서 function 내에서 지역변수로 활용되고 function 바깥에서는 전역변수로 활용된다.
+그리고 잘못 쓰면 전역변수가 되어서 기존의 값이 바뀌어 버린다. 근데 이건 다 그런거 아닌가....
+그러다 보니 선언을 하지 못하면 아예 사용할 수 없게 let과 const가 등장함.
+let은 선언 후 재할당 가능 const는 불가능. 둘다 재선언은 불가....
+따라서, 무조건 const 활용하는 것이 좋다고 한다. 그래야 수많은 코드 사이에서 나도 모르는 새 변수 끼리 충돌하고 꼬이는 걸 방지 가능.
+var은 for문이나 if에서는 지역변수로 활용되지 않으니 그것도 주의!
+
+<script>
+ var MYAPP = {}
+MYAPP.calculator = {
+    'left' : null,
+    'right' : null
+}
+MYAPP.coordinate = {
+    'left' : null,
+    'right' : null
+}
+  
+MYAPP.calculator.left = 10;
+MYAPP.calculator.right = 20;
+function sum(){
+    return MYAPP.calculator.left + MYAPP.calculator.right;
+}
+document.write(sum());
+</script>
+
+<script> //전역 변수를 하나도 만들고 싶지 않은 때에는 익명함수를 이용하면 된다.
+(function(){
+    var MYAPP = {}
+    MYAPP.calculator = {
+        'left' : null,
+        'right' : null
+    }
+    MYAPP.coordinate = {
+        'left' : null,
+        'right' : null
+    }
+
+    MYAPP.calculator.left = 10;
+    MYAPP.calculator.right = 20;
+    function sum(){
+        return MYAPP.calculator.left + MYAPP.calculator.right;
+    }
+    document.write(sum());
+}())
+    </script>
+
+<script>
+var i = 5;
+
+function a(){
+    var i = 10;
+    b();
+}
+
+function b(){
+    document.write(i); //지역변수가 없으니 전역변수를 먼저 찾아보게 됨.
+} //정적 유효범위.
+a(); // 5가 출력됨. b가 정의될 때, 지역변수를 살피는 거지 a가 정의될 때 살펴보지는 않음.
+</script>

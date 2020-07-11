@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body id="start">
+<ul>
+    <li><a href="./532">html</a></li>
+    <li><a href="./533">css</a></li>
+    <li><a href="./534">JavaScript</a></li>
+    <ul>
+        <li><a href="./535">JavaScript Core</a></li>
+        <li><a href="./536">DOM</a></li>
+        <li><a href="./537">BOM</a></li>
+    </ul>
+</ul>
+    <script>
+        for(var name in Node){
+            console.log(name,Node[name]);
+        }
+        var body=document.getElementById('start');
+        body.nodeType   //===3
+        document.nodeType   //===9
+        body.nodeType===Node.ELEMENT_NODE   //True 이런 식~
+        body.nodeName
+
+        function traverse(target,callback){
+            if(target.nodeType === 1){
+                callback(target);
+                var c=target.childNodes;
+                for(var i=0;i<c.length;i++){
+                    traverse(c[i],callback);
+                }
+            }
+        }
+        // traverse(document.getElementById('start'),function(elem){
+        //     console.log(elem);
+        // });
+
+        // traverse(document.getElementById('start'),function(elem){
+        //     if(elem.nodeName==='A'){
+        //         elem.style.backgroundColor='blue'
+        //         elem.style.color='red';
+        //         }
+        //     })
+    </script>
+    
+</body>
+</html>

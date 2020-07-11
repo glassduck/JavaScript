@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>    //객체는 속성을 지닌다. 근데 그 속성이 함수면 method다.
+        function sum(){
+        var i, _sum = 0;    
+        for(i = 0; i < arguments.length; i++){  //인자를 안 넣어도 argu.leng으로 갯수 전달 가능.
+            document.write(i+' : '+arguments[i]+'<br />'); //argument를 안넣어도 indexing 가능
+            _sum += arguments[i];
+        }   
+        return _sum;
+        }
+        document.write('result : ' + sum(1,2,3,4));
+    </script>
+    <script>
+    function zero(){
+        console.log(
+            'zero.length', zero.length,  // 0
+            'arguments', arguments.length   // 0
+        );
+    }
+    function one(arg1){
+        console.log(
+            'one.length', one.length,   // 1 함수 뒤에 length가 붙으면 이 함수가 몇 개의 매개변수로 정의되었는가.
+            'arguments', arguments.length   //2 몇 개의 인자가 전달되었는가
+        );  
+    }
+    function two(arg1, arg2){
+        console.log(
+            'two.length', two.length,      //2
+            'arguments', arguments.length   //1
+        );
+    }
+    zero(); // zero.length 0 arguments 0 
+    one('val1', 'val2');  // one.length 1 arguments 2 
+    two('val1');  // two.length 2 arguments 1
+    </script>
+</body>
+</html>

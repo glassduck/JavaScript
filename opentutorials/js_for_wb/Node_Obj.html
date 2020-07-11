@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body id="start">
+    <!-- <h1>Node 객체</h1>
+    노드는 모든 것들의 부모이다. -->
+    <ul>
+        <li><a href="./532">html</a></li> 
+        <li><a href="./533">css</a></li>
+        <li><a href="./534">JavaScript</a>
+            <ul>
+                <li><a href="./535">JavaScript Core</a></li>
+                <li><a href="./536">DOM</a></li>
+                <li><a href="./537">BOM</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+    var s = document.getElementById('start');
+    console.log(1, s.firstChild); // #text  body태그 뒤의 줄바꿈 공백이 text라...공백 없애면 ul이라고 나옴.
+    var ul = s.firstChild.nextSibling   
+    console.log(2, ul); // ul
+    console.log(3, ul.nextSibling); // #text 또 공백이 텍스트로...
+    console.log(4, ul.nextSibling.nextSibling); // script
+    console.log(5, ul.childNodes); //text, li, text, li, text, li, text
+    console.log(6, ul.childNodes[1]); // li(html)
+    console.log(7, ul.parentNode); // body  부모 찾기
+    </script>
+</body>
+</html>

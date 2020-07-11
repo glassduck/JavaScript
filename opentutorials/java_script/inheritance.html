@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        function Person(name){  //person 이라는 생성자
+            this.name =name;
+        }
+        person.prototype.name=null;
+        person.prototype.introduce= function(){
+                return 'My name is '+this.name; 
+            }   
+        }
+        var p1 = new Person('egoing'); 
+        document.write(p1.introduce()+"<br />");       
+        
+        function Programmer(name){  
+            this.name =name;
+        }
+        Programmer.prototype=new Person();  //Person에 의해 객체가 생성. js는 생성자 함수가 prototype가지는 확인하고 자기랑 똑같이 만들어 버림.protoype이라는 속성의 property값이 됨.
+        Programmer.prototype.coding=function(){
+            return 'hello world';
+        }
+
+        function Designer(name){  
+            this.name =name;
+        }
+        Designer.prototype=new Person();
+        Designer.prototype.design=function(){
+            return 'beautiful';
+        }
+
+        var p1=new Programmer('egoing');    //p1은 Programmer에 의해 객체화가 된거고...거기에 egoing을 넣은 값들이 상속되는거.
+        document.write(p1.introduce()+"<br/>");
+        document.write(p1.coding()+"<br/>");
+
+        var p2=new Designer('park');    //Programmer든 Designer든 다 person을 상속받은 것. 거기에 자기꺼만 추가해준 것. 이렇게 되면 저 person 수정하면 나머지에도 적용됨.
+        document.write(p2.introduce()+"<br/>");
+        document.write(p2.design()+"<br/>");
+    </script>    
+</body>
+</html>

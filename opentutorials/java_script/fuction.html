@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        function a(){} //javascript의 함수는 값으로 활용되어 객체 안에 저장 가능
+
+        var a=function(){}
+
+        a={
+            b:function(){}
+        };
+        function cal(func, num){
+            return func(num)
+        }
+        function increase(num){
+            return num+1
+        }
+        function decrease(num){
+            return num-1
+        }
+        alert(cal(increase, 1));
+        alert(cal(decrease, 1));
+
+        var process = [
+        function(input){ return input + 10;},
+        function(input){ return input * input;},
+        function(input){ return input / 2;}
+        ];
+        var input = 1;
+        for(var i = 0; i < process.length; i++){
+            input = process[i](input);
+        }
+        alert(input);
+    </script> // 즉, 함수는 변수, 매개변수, 리턴값 등으로 활용 가능 : first-class citizen object(entity)
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        function func(){
+            alert('Hello?');    
+        }
+        func();
+        window.func();  //사실 func()는 window라는 객체 속 메소드였던 것!!! 모든 것은 객체 지향!!!
+
+        var o = {'func':function(){
+            alert('Hello?');
+        }}
+        o.func();
+        window.o.func();    //객체 안에 메소드를 정의했더라도...그것은 또 window 객체의 property였던 것!!!
+        //모든 객체가 전역 개체의 property
+    </script>
+</body>
+</html>

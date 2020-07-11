@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        var person={}
+        person.name='Park'  // 객체 안의 변수는 속성
+        person.introduce=function(){
+            return 'my name is'+this.name;  // 객체 안의 함수는 메소드
+        }
+        function Person(){}
+        var p1 = new Person();  //이건 객체의 생성자라고 부름.Constructer
+        p1.name = 'egoing';
+        p1.introduce = function(){
+            return 'My name is '+this.name; 
+        }
+        document.write(p1.introduce()+"<br />");
+        
+        function Person(name){  //이렇게 생성자 안에서 새로 정의하는 이것을 초기화(init)라고 함.
+            this.name = name;
+            this.introduce = function(){
+                return 'My name is '+this.name; 
+            }   
+        }
+        var p1 = new Person('egoing');
+        document.write(p1.introduce()+"<br />");
+    </script>
+</body>
+</html>

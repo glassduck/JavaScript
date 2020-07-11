@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <ul>
+        <li class="marked">html</li>
+        <li>css</li>
+        <li id="active">JavaScript
+            <ul>
+                <li>JavaScript Core</li>
+                <li class="marked">DOM</li>
+                <li class="marked">BOM</li>
+            </ul>
+        </li>
+    </ul>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+     //   $( ".marked", "#active").css( "background-color", "red" );  //두 번 째 selector는 첫번째 선택자의 하위에 있는 것 중 필터링 하는 것.
+     //   $( "#active", ".marked").css( "background-color", "red" );
+  //   $( "#active").find('.marked').css( "background-color", "red" );
+  $( "#active").css('color','blue').find('.marked').css('background-color','gray')  //이러면 조건 2개 한 방에 쓰는 거 가능.
+    </script>
+</body>
+</html>
