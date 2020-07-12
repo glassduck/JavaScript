@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            padding:0;
+            margin:0;
+        }
+        div{
+            border:50px solid #1065e6;
+            padding:50px;
+            margin:50px;
+        }
+        #target{
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="target">
+            Coding
+        </div>
+    </div>
+    <script>
+    var t = document.getElementById('target');
+    console.log(t.getBoundingClientRect());
+    console.log(t.offsetParent);    //element의 위치는 바디의 기준으로 측정.
+    console.log(t.clientHeight,t.clientWidth)
+    </script>
+</body>
+</html>

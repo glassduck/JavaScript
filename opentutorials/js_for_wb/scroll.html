@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    
+
+<style>
+    body{
+        padding:0;
+        margin:0;
+    }
+    div{
+        border:50px solid #1065e6;
+        padding:50px;
+        margin:50px;
+    }
+    #target{
+        width:100px;
+        height:2000px;
+    }
+</style>
+<input type="button" id="scrollBtn" value="scroll(0, 1000)" />
+<script>
+    document.getElementById('scrollBtn').addEventListener('click', function(){
+        window.scrollTo(0, 1000);
+    })
+</script>
+<br>
+onclick 이며 onchange 는 event type<br>
+alert(window.location)이 event target...event가 실행되었을 때, 발생하는 대상<br>
+event handler : event 가 실행되었을 때 실행될 코드들
+<br>
+<div>
+    <div id="target">
+        Coding
+    </div>
+</div>
+<input type="button" onclick="alert(window.location)" value="alert(window.href)"><br>
+이건 인라인 방식. 태그 안에 event가 속성으로 들어가 있는 것.<br>
+
+<input type="button" onclick="window.open('bom.html')"value="window.open('bom.html')"><br>
+
+<input type="text" onchange="alert(this.value)">
+
+<input type="button" id="target1" onclick="alert('hello world'+document.getElementById('target1').value)" value="button"><br>
+
+<input type="button" id="target1" onclick="alert('hello world'+this.value)" value="button"><br>
+
+</body>
+</html>
