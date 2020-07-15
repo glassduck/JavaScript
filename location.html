@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      location.replace("https://www.google.com"); //assign과 달리 뒤로가기가 안됨. 이력이 안 남음
+      setTimeout(function () {
+        location.replace("https://www.google.com");
+      }, 3000); //3초뒤 구글로 redirect되게 만들 수 있는 코드.
+      location.reload();
+      location.hash = "#header"; //id가 header인것을 찾아떠난다.
+      location.search = "some data"; //서버에 질의 문자열 보내기! url뒤에 붙는다.
+
+      encodeURI("연습3"); //UTF-8 16진수 값으로 변환 "%EC%97%B0%EC%8A%B53"
+      encodeURIComponent;
+      decodeURI; //이건 반대로 디코딩~
+      decodeURIComponent;
+
+      history.back(); //뒤로 가기
+      history.forward(); //앞으로 가기
+      history.go(-5); //뭔지 감오지?
+      history.pushState(null, null, "asdf.html"); //이런식으로 이력도 추가 가능. 첫번째는 연결할 객체 참조. 두번째는 title 세번째는 생략하면 현재 페이지.
+      //이동은 하지 않음, 이력추가만
+    </script>
+  </body>
+</html>
+;

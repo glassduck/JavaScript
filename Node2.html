@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>textContent 활용법</title>
+    <script src="./elt.js"></script>
+    <script>
+      window.onload = function () {
+        var headline = elt("h1", null, "DOM에 관하여");
+        document.body.appendChild(headline);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>하트</h1>
+    <p id="cards">&hearts;하트는 <em>승려</em>라는 뜻입니다.</p>
+    <script>
+      var para = document.getElementById("cards");
+      //   para.innerHTML = "&diams;다이아는 <strong>상인</strong>이라는 뜻입니다.";
+      //   console.log(para.innerHTML);
+      console.log(para.textContent);
+
+      function textContent(element) {
+        var content = element.textContent;
+        if (content !== undefined) return content;
+        return element.innerText;
+      }
+
+      var headline = document.createElement("h1"); //이것의 부모 노드나 자식노드는 모두 null
+      console.log(headline.nodeName); //DOM트리와 무관!
+      console.log(headline.nodeType);
+
+      var textnode = document.createTextNode("We only believe what we want");
+    </script>
+  </body>
+</html>

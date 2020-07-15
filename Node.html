@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="first">첫 번 째</div>
+    <div id="second">두 번 째</div>
+    <div id="third">세 번 째</div>
+    <div>
+      <p class="important">
+        Document Object Model
+        <strong class="unique">(DOM)</strong>
+      </p>
+      의 줄임말입니다.
+    </div>
+    <div class="cat black">봄베이</div>
+    <div class="cat white">페르시안</div>
+    <div class="dog white">스피츠</div>
+
+    <form id="favorite">
+      <input type="checkbox" name="dog" value="pome" /> 포메라니안<br />
+      <input type="checkbox" name="dog" value="dalma" /> 달마시안<br />
+      <input type="checkbox" name="dog" value="bool" /> 불독<br />
+    </form>
+    <a href="https://school.gilbut.co.kr" id="school">길벗스쿨</a>
+    <p id="controls">
+      <input type="button" value="click" onclick="doSomething()" />
+    </p>
+    <script>
+      var element = document.getElementById("second");
+      element.innerHTML = "여기를 수정함";
+
+      var element1 = document.getElementsByTagName("div");
+      element1[0].innerHTML = "이번엔 여기닷";
+
+      var allElements = document.getElementsByTagName("*"); //요로코롬 하면 전부 가져올 수 있음.
+
+      var divs = document.getElementsByTagName("div");
+      var firstDivsParas = divs[3].getElementsByTagName("p");
+      console.log(firstDivsParas); // 이 아이는 동적입니다.
+
+      var static = Array.prototype.slice.call(divs, 0); //따라서, 요로코롬 정적으로 만들어서 순회시켜줘야 합니다.
+
+      var cats = document.getElementsByClassName("cat");
+      for (var i = 0; i < cats.length; i++) {
+        console.log(i + " 번 째 고양이 : " + cats[i].innerHTML);
+      }
+
+      var paras = document.getElementsByClassName("important");
+      var firstParasUniq = paras[0].getElementsByClassName("unique"); //요것도 요소의 객체에서도 쓸 수 있지롱!
+      console.log(firstParasUniq);
+
+      var dogs = document.getElementsByName("dog");
+      dogs[1].value = "corgi";
+      dogs[1].nextSibling.nodeValue = "웰시 코기";
+      for (var i = 0; i < dogs.length; i++) {
+        console.log(i + " 번째의 값 " + dogs[i].value);
+      }
+
+      var elements = document.querySelectorAll("p.important>strong"); //id가 important인 요소의 직계 자식 노드 중 strong!이란 의미.
+      //위 노드 리스트는 내용이 바뀐다고 동적으로 변화하지 않음. 또한, 해당되는 것이 없으면 빈 노드리스트로 반환하지도 않음.
+
+      var anchor = document.getElementById("school");
+      console.log(anchor.href);
+      anchor.setAttribute("href", "https://www.naver.com");
+
+      var result = [];
+      var fm = document.getElementById("favorite");
+      var list = fm.children;
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].nodeName == "INPUT" && list[i].type == "checkbox") {
+          result.push(list[i].getAttribute("value"));
+        }
+      }
+      console.log(result.join(","));
+
+      var para2 = document.getElementById("controls");
+      var list2 = para2.firstElementChild.attributes;
+      for (var i = 0; i < list2.length; i++) {
+        console.log(list2[i].name + ":" + list2[i].value);
+      }
+      //   console.log(list2["type"].value);  //이런 것도 가능!
+      //   console.log(list2.onclick.value);
+    </script>
+  </body>
+</html>

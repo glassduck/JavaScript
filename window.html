@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Top page</title>
+    <script>
+      window.onload = function () {
+        var w;
+        document.getElementById("open").onclick = function () {
+          w = open("newpage.html", "new page", "width=400, height=300");
+          w.moveBy(10, 20);
+          w.moveTo(100, 150);
+          //   w.scrollTo();
+          //   w.scrollBy();
+        };
+        w.document.body.style.backgroundColor = "green";
+        opener.document.body.style.backgroundColor = "green";
+        document.getElementById("close").onclick = function () {
+          if (w) w.close();
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <p>
+      <input type="button" value="open" id="open" />
+      <input type="button" value="close" id="close" />
+    </p>
+  </body>
+</html>
