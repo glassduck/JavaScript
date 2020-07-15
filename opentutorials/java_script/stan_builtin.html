@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        var arr =new Array('seoul','newyork','tokyo');
+        function getrandval(arr){
+            var index=Math.floor(arr.length*Math.random());
+            return arr[index];
+        }
+        console.log(getrandval(arr));
+
+        //아예 메소드로 넣어버리기~
+        Array.prototype.random=function(){
+            let index=Math.floor(this.length*Math.random());
+            return this[index];
+        }
+        var arr =new Array('seoul','newyork','tokyo','busan');
+        console.log(arr.random());
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="register.php">
+        <input type="text" name="id" placeholder="아이디를 입력해주세요" required 
+        pattern="[a-zA-Z][a-zA-Z].+[0-9]">
+        <br>
+        .은 어떠한 것도 와도 된다는 것을 의미.
+        <br>
+        .+ 모든 문자 중 하나 이상 와야함.
+        <br>
+        [0-9] : 제일끝에는 숫자가 와야한다.
+        <br>
+        <input type="email" name="email" placeholder="이메일을 입력">
+        <input type="submit">
+    </form>
+
+    <br>
+form은 보안성이 매우 낮으므로 서버 쪽에서 엄격한 검증 후 데이터 받는 과정이 필수. 
+</body>
+</html>

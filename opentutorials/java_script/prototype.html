@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>        //이걸 아울러 prototype chain이라 한다.
+        function Ultra(){}
+        Ultra.prototype.ultraProp = true;   //원래 prototype이라는 특수한 property안에는 비어있는 obj인데 거기에 값을 넣어준거.
+        
+        function Super(){}
+        Super.prototype = new Ultra();      //상속
+        
+        function Sub(){}
+        var s= new Super();
+        // s.ultraProp=3;      여기에 ultraProp값이 끼어들면 sub prototype에 저장된 값이 잇네!!!하면서 3을 리턴해버림.
+        // sub.prototype=s;
+        Sub.prototype = new Super();        //또 상속 이걸 Super를 상속받고자한다면 그 객체를 prototype에 넣어야지 여기서 super.prototype쓰면 sub 하위에 뭔가를 추가하는 것이 부모에도 영향을 줌.
+        
+        var o = new Sub();  //생성자의 역할...우리가 가진 객체의 원형을 넘긴다!
+        o.ultraProp=1;
+        console.log(o.ultraProp);   //o안의 Ultraprop를 먼저 확인 없으면 생성자의 객체로 넘어감. 여기서 있으면 return해주는 거!
+    </script>
+</body>
+</html>

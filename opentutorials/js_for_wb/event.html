@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="target" value="button">
+    <input type="button" id="target1" value="button1">
+    <input type="button" id="target2" value="button2">
+    <script>
+        var t=document.getElementById('target');
+        t.onclick=function(event){
+            var event = event || window.event; //cross browsing 이슈 해결을 위해...
+            // alert('hello workld'+event.target.value)
+            var target= event.target || event.srcElement;//ie8 구데기라...
+            console.dir(event)
+        }
+        t.addEventListener('click',function(event){  //요즘 다 이렇게 씀
+            alert('hello workld'+event.target.value);
+        })
+
+        //혹시나 하는 크로스 브라우징 이슈 방지하는 법
+        if(t.addEventListener){
+            t.addEventListener('click',function(event){  //cross -browsing issue
+            alert('hello workld'+event.target.value);
+        })} else if(t.attcahEvent){
+            t.attcahEvent('onclick',function(event){  //옛날 방식....요즘은 패키지가 알아서 처리해줌
+            alert('hello workld'+event.target.value);
+        })}
+
+        t.addEventListener('click',function(event){  
+            alert('1');
+        });
+        t.addEventListener('click',function(event){  //inline은 두개 쓰면 마지막 꺼면 실행됨.back
+            alert('2'); //이건 add니까 여러개 적용 가능.
+        })
+        var t1=document.getElementById('target1');
+        var t2=document.getElementById('target2');
+        function btn_listener(event){
+            switch(event.target.id){
+                case 'target1' :
+                    alert(1);
+                    break;
+                case 'target2' :
+                    alert(2);
+                    break;
+            }
+        }
+        t1.addEventListener('click',btn_listener)
+        t2.addEventListener('click',btn_listener)
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        //사실 앞에서 상속 배우면서 봤던 거에서 최상단에 object가 있었던 거임.
+        //object의 prototype은 모든 객체가 사용할 수 있는 기능이다.
+
+        //object.keys() prototype이 중간에 없는 것의 실행 방법
+        const object1 = {
+        a: 'somestring',
+        b: 42,
+        c: false
+        };
+
+        console.log(Object.keys(object1));      //차이점 : 인자를 받아 값을 처리!!생성자 함수에 의해 생성되었을 것! 따라서, object를 객체로 부모로.
+        // expected output: Array ["a", "b", "c"]
+
+        //object.prototype.toString()  prototype이 있는 것의 실행 방법.
+        function Dog(name) {
+        this.name = name;
+        }
+
+        const dog1 = new Dog('Gabby');  //차이점 : 객체를 만든다!!! object.prototype 소속이다....따라서, 새로운 객체를 부모로
+
+        Dog.prototype.toString = function dogToString() {
+        return `${this.name}`;
+        };
+
+        console.log(dog1.toString());
+        // expected output: "Gabby"
+
+        Object.prototype.contain=function(argu){
+            for(var name in this){
+                if(this[name]===argu){
+                    return true;
+                }
+            }
+            return false;
+        }       //안 좋은 방법. 저 object안에 contain이라는 key가 생기게 됨.
+        var a=['pakr','kim','choi']
+        for(var name in a){
+            if(a.hasOwnProperty(name)){  //hasownproperty : boolean 이므로 if문에 활용해야함.
+                console.log(name)
+                }
+            }
+
+    </script>
+</body>
+</html>

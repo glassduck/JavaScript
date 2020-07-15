@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <h3>inline</h3>
+    <input type="button" onclick="alert('Hello world')" value="Hello world"/> 
+    onclick이라는 html형식과 alert라는 js형식이 inline형태로 동시에 쓰여졌다! 유지보수 bad!
+
+    <h3>script</h3>
+    <input type="button" id="hw" value="Hello world" />
+    <script>
+        var hw = document.getElementById('hw');
+        hw.addEventListener('click', function(){
+            alert('Hello world');
+        })
+    </script>
+    <h3>외부파일 js로!</h3>
+    <input type="button" id="hw" value="Hello world" />
+    <script src="./script.js"></script>
+    유지보수의 편의성!!
+
+    <h3>script의 위치!</h3>
+    <head>
+        <script src="script2.js"></script>
+        <script>
+            window.onload = function(){
+            var hw = document.getElementById('hw');
+            hw.addEventListener('click', function(){
+                alert('Hello world');
+            })
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" id="hw" value="Hello world" />
+        var hw 이 줄을 head에서 실행하면 hw가 아직 정의되기 전이기 때문에 오류가 뜸.<br>
+        따라서, window.onload를 써줘야 한다. onload= 웹페이지가 다 끝난 후 실행된다.<br>
+        웬만하면 body 태그 마지막에 위치 시켜주는 것이 좋다.
+    </body>
+</body>
+</html>

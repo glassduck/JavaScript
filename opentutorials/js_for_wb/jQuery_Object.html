@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <ul>
+        <li id="target">html</li>
+        <li>css</li>
+        <li>JavaScript</li>
+    </ul>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        var li = $('li');
+        li[0];  //    <li>html<li>이라고 뜸
+        li.css('color','blue')  //설정  //암시적 반복...하나하나 다 찾아서 적용해줌.
+        li.css('color')     //가져오기
+
+        console.log($('li').length);
+        console.log($('li')[0]);
+        var li = $('li');
+        for(var i=0; i<li.length; i++){
+            console.log(li[i]);     //이건 HTMLliElement이기에 여기에 jquery 적용 못함.
+            //console.log(li[i]).css('color','blue'): 불가!!!!!
+        }
+        for(var i=0; i<li.length; i++){
+            console.log($(li[i]).css('color','red'));
+        }
+
+        var t=document.getElementById('target');
+        var li=$(t); //li에 css를 넣을 객체가 들어감.
+    </script>
+    <script>
+        var li = $('li');
+        li.map(function(index, elem){   //한줄한줄 확인하는 함수 (map)
+            console.log(index, elem);   //map은 함수를 매개변수로 한다.
+            $(elem).css('color', 'red');//DOM객체인 ele은 바로 쓸 수 없기 때문에 jQuery함수 $로 감싸야 한다.
+        })
+    </script>
+</body>
+</html>

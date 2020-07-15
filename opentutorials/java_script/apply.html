@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        o1 = {val1:1, val2:2, val3:3, sum:sum}
+        o2 = {v1:10, v2:50, v3:100, v4:25, sum:sum}
+        function sum(){
+            var _sum = 0;
+            for(name in this){
+                if(typeof this[name] !== 'function')
+                _sum += this[name];
+            }
+            return _sum;
+        }
+        alert(sum.apply(o1)) // 6 alert(o1.sum())도 해보삼.
+        alert(sum.apply(o2)) // 185
+
+        function sum(x,y){return x+y}; //이건 함수 literal이라고 부른다.
+        var sum2=new Function('x','y','return x+y;'); //객체 literal.
+        var a=[1,2,3]   //배열 literal
+        var a-new Array(1,2,3)  
+
+        var o = {}
+        var p = {}
+        function func(){
+            switch(this){       //switch문은 해당 조건과 부합하는 case를 찾아 break 전까지 실행.
+                case o:
+                    document.write('o<br />');
+                    break;
+                case p:
+                    document.write('p<br />');
+                    break;
+                case window:
+                    document.write('window<br />');
+                    break;          
+            }
+        }   //apply란 func를 o객체에 적용!!이 느낌인듯....메소드는 객체라는 master에 강하게 종속됨...
+        func();     //window
+        func.apply(o);  //o
+        func.apply(p);  //p
+    </script>
+</body>
+</html>

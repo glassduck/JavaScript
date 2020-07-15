@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+        문자열 //원시 데이터 타입 하지만, 문자열이 가지는 속성을 나타내기 위해 임시로 객체로 만들어줌.
+        str.length 등의 property사용 시 str= new string ('coding')이런 걸 임시로 해주는 것.
+        str.charAt('0') 이것도 마찬가지~ 메소드도 사용가능
+        문자열을 객체로 활용하고 싶으면 js가 객체로 임시로 해버림.
+        var str = 'coding';
+        str.prop = 'everybody'; //여기선 오류가 안 남. Wrapper object(원시데이터 타입을 임시로 감싸주는 객체)가 존재하기 때문.
+        console.log(str.prop); //undefined. 위의 줄 실행이 끝나고 다시 원시 데이터 타입으로 돌아갔으니까!
+        num, string, boolean ,null, undefined : 원시데이터 타입, 단, null, undefined는 wrapper 객체 존재 x..따라서, null.prop은 오류!
+    </script>
+</body>
+</html>

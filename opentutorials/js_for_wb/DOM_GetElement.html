@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>getElementsByTagName</h1>
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+<ol>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ol>
+<script>
+    var ul = document.getElementsByTagName('ul')[0];    //모든 ul태그 찾은 것 중 첫번째 찾고
+    var lis = ul.getElementsByTagName('li');    //그 밑의 li를 찾아라~
+    for(var i=0; lis.length; i++){
+        lis[i].style.color='red';   
+    }
+</script>
+<!-- <script> 이건 모든 li만 찾는 것으므로 한계가 있음
+    var lis = document.getElementsByTagName('li');
+    for(var i=0; i < lis.length; i++){
+        lis[i].style.color='red';   
+    }
+</script> -->
+<h1>getElementsByClassName</h1>
+<ul>
+    <li>HTML</li>
+    <li class="active">CSS</li>
+    <li class="active">JavaScript</li>
+</ul>
+<script>
+    var lis = document.getElementsByClassName('active');    //class는 타 언어에서 오해의 소지가 있으므로 className
+    for(var i=0; i < lis.length; i++){
+        lis[i].style.color='red';   
+    }
+</script>
+<h1>getElementById</h1>
+Element에 s가 없다! 원래 id가 하나만 부여가능. 따라서, 가장 성능이 좋고 이걸 쓰는 게 우선시.
+<ul>
+    <li>HTML</li>
+    <li id="active">CSS</li>
+    <li>JavaScript</li>
+</ul>
+<script>
+    var li = document.getElementById('active');
+    li.style.color='red';
+</script>
+<h1>querySelector</h1>
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+<ol>
+    <li>HTML</li>
+    <li class="active">CSS</li>
+    <li>JavaScript</li>
+</ol>
+ 
+<script>
+    var li = document.querySelector('li');  //ALL을 안 붙이면 가장 먼저 나오는 것 하나만 선택.
+    li.style.color='red';
+    var li = document.querySelector('.active');
+    li.style.color='blue';
+</script>
+<H1>querySelectorAll</H1>
+<!-- <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+<ol>
+    <li>HTML</li>
+    <li class="active">CSS</li>
+    <li>JavaScript</li>
+</ol>
+ 
+<script>
+    var lis = document.querySelectorAll('li');
+    for(var name in lis){
+        lis[name].style.color = 'blue';
+    }
+</script> -->
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html></html>
+<head>
+</head>
+<body>
+    <h1>복수 와 단수</h1>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active">JavaScript</li>
+    </ul>
+    <script>
+        var li = document.getElementById('active');
+        console.log(li.constructor.name);   //HTML LIElement : 단수의 객체일 경우, li라는 element의 property 활용 가능.
+        var lis = document.getElementsByTagName('li');
+        console.log(lis.constructor.name);  //HTMLCollection : 복수의 객체일 경우, 유사배열...Array처럼 활용 가능.
+    </script>
+    <h2>단수</h2>
+    <a id="anchor" href="http://opentutorials.org">opentutorials</a>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="list">JavaScript</li>
+    </ul>
+    <input type="button" id="button" value="button" />
+    <script>    //모두 태그명을 포함한 html element로 표현되는군...즉, 모두 부모객체인 html element의 자식.
+    //따라서, 각 태그마다 기본 기능 위에다 property를 갖고 있음.
+        var target = document.getElementById('list');
+        console.log(target.constructor.name);   //HTML LI Element (target, value등의 속성)
+    
+        var target = document.getElementById('anchor');
+        console.log(target.constructor.name);   //HTML Anchor Element ( so many...속성) 
+    
+        var target = document.getElementById('button');
+        console.log(target.constructor.name);   //HTML Input Elemnet
+    </script>
+    <h3>DOM Tree.</h3>
+    <h2>복수</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active">JavaScript</li>
+    </ul>
+    <script>
+    console.group('before');    //console.group()에서 console.groupEnd()까지 그루핑해서 보여줌.
+    var lis = document.getElementsByTagName('li');
+    for(var i = 0; i < lis.length; i++){
+        console.log(lis[i]);
+    }
+    console.groupEnd();
+    console.group('after');
+    lis[1].parentNode.removeChild(lis[1]);  //제거된 것은 바로 반영된다.
+    for(var i = 0; i < lis.length; i++){
+        console.log(lis[i]);    
+    }
+    console.groupEnd();
+    </script>
+</body>
+</html>

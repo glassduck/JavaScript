@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            padding:0;
+            margin:0;
+        }
+        div{
+            border:50px solid #1065e6;
+            padding:50px;
+            margin:50px;
+        }
+        #target{
+            width:100px;
+            height:2000px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr><td>
+        <div>
+            <div id="target">
+                Coding
+            </div>
+        </div>
+    </td></tr>
+</table>
+<script>
+    var t = document.getElementById('target');
+    setInterval(function(){
+        console.log('getBoundingClientRect : ', t.getBoundingClientRect().top,  //element인 바디 태그와 우리가 보는 화면의 top까지의 거리
+         'pageYOffset:', window.pageYOffset);   //pageYoffset은 scroll한 거리를 의미.
+    }, 1000)    //위 2개 값을 더하면 항상 element의 절대적 좌표와 같음.
+</script>    
+</body>
+</html>
