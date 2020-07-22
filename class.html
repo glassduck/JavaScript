@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Circle {
+        constructor(center, radius) {
+          this.center = center;
+          this.radius = radius;
+        }
+        area() {
+          return Math.PI * this.radius * this.radius;
+        }
+        toString() {
+          return (
+            "Circle" +
+            "중심점(" +
+            this.center.x +
+            "," +
+            this.center.y +
+            "), 반지름 = " +
+            this.radius
+          );
+        }
+      }
+      class Ball extends Circle {
+        move(dx, dy) {
+          this.center.x += dx;
+          this.center.y += dy;
+        }
+        //super 키워드를 통해, 서브타입의 생성자가 슈퍼타입 생성자 메소드를 호출 및 수정 가능.
+        toString() {
+          var str = super.toString();
+          return str.replace("Circle", "Ball");
+        }
+      }
+      var ball = new Ball({ x: 0, y: 0 }, 2);
+      console.log(ball.toString());
+      console.log(ball.area());
+      ball.move(1, 2);
+      console.log(ball.toString());
+
+      class Person {
+        //생성자를 이용한 초기화
+        constructor(name) {
+          this.name = name;
+          Person.personCount++;
+        }
+        //prototype 메소드
+        get name() {
+          return this._name;
+        }
+        //get과 set은 반드시 한 세트이며...프로퍼티처럼 동작한다! 근데 정의할때는 함수모양!
+        set name(value) {
+          this._name = value;
+        }
+        //메소드 추가
+        sayName() {
+          console.log(this.name);
+        }
+        static count() {
+          return Person.personCount;
+        }
+      }
+      var person = new Person("Tom");
+      console.log(person.name);
+      person.name = "Huck";
+      console.log(person.name);
+      person.sayName();
+      Person.personCount = 0;
+
+      var person1 = new Person("park");
+      console.log(Person.count());
+      var person2 = new Person("chio");
+      console.log(Person.count());
+    </script>
+  </body>
+</html>

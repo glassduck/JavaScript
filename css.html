@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      .emphasize {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">JavaScript</h1>
+    <p class="note invisible" id="note1">loremfnkslf</p>
+    <script>
+      var element = document.getElementById("title");
+      element.onmouseover = function () {
+        element.className = "emphasize";
+      };
+      element.onmouseout = function () {
+        element.className = "";
+      };
+
+      var element1 = document.getElementById("note1");
+      var list = element1.classList;
+      for (var i = 0; i < list.length; i++) {
+        console.log(list[i]);
+      }
+      list.toggle("invisible"); //뺐다 넣었다~
+      console.log(element1.className);
+      list.toggle("invisible");
+      console.log(element1.className);
+    </script>
+  </body>
+</html>
