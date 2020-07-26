@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p><label>prevent event on</label><input type="checkbox" id="prevent" name="eventprevent" value="on"/></p>
+    <p><a href="https://opentutorials.org" onclick="if(document.getElementById('prevent').checked) return false;">opentutorials</a></p>
+    <!-- inline방식에서는 onclick이든 onsubmit이든 false값을 주면 실행이 취소됨. -->
+    <p>
+        <form action="https://opentutorials.org" onsubmit="if(document.getElementById('prevent').checked) return false" >
+        <input type="submit" >
+        </form>
+    </p>
+    <script>
+        //property 이용
+        document.querySelector('a').onclick=function(event){
+            if(document.getElementById('prevent').checked)
+            return false;
+        }
+        //addEventListetner이용
+        document.querySelector('form').addEventListener('submit',function(event){
+            if (document.getElementById('prevent').checked)
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

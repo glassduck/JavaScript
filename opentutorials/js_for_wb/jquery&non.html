@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<ul>
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+</ul>
+    <input type="text" id="target">
+    <input type="button" id="remove" value="remove">
+    <p id="status"></p>
+    <input type="button" id="pure" value="pure" />
+    <input type="button" id="jquery" value="jQuery" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        // 순수하게 구현했을 때
+        var target = document.getElementById('pure');
+        if(target.addEventListener){
+            target.addEventListener('click', function(event){
+                alert('pure');
+            });
+        } else {
+            target.attachEvent('onclick', function(event){
+                alert('pure');
+            });
+        }
+        //jQuery를 사용했을 때
+        $('#jquery').on('click', function(event){
+            alert('jQuery');
+        })
+        //하위 element에 대해 코드가 작동하도록 이벤트를 설정할 수 있다!
+        $('ul').on('click','a,li',function(event){
+            console.log(this.tagName);
+        })
+        // $('#target').on('focus blur',function(e){
+        //     $('#status').html(e.type);
+        // })
+        var handler=function(e){
+            $('#status').html(e.type);
+        }
+
+        //chaning도 됨!
+        $('#target').on('focus',handler).on('blur',handler)
+        // $('#target').on('focus',function(e){
+        //     alert(1);
+        // })
+        //객체로 전달해도 됨
+        // $('#target').on(
+        //     {
+        //         'focus' : handler,
+        //         'blur' : handler
+        //     }
+        // )
+        $('#remove').on('click',function(e){
+            //handler만 제거하고 싶으면 두번째 인자로!
+            $('#target').off('focus',handler);
+        });
+    </script>
+</body>
+</html>

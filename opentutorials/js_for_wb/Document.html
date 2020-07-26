@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    //아니면 윈도우 객체의 onload 프로퍼티를 이용하여...
+    window.addEventListener('DOMContentLoaded',function(){
+    var t=document.getElementById('target');
+    console.log(t);
+    })
+</script>
+</head>
+<body>
+    <p id="target">Hello</p>
+    <img src=""/>   이미지가 다 읽힐 때까지 onload는 기다리게 됨.
+    그래서 DOMContentLoaded쓰면 비동기 방식으로 처리가능.
+
+<!-- <script>
+    var t=document.getElementById('target');
+    console.log(t);
+    //위부터 읽기 때문에 body 밑에 위치시켜줘야한다.
+</script> -->
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{ border: 5px solid red;padding: 30px;}
+        body{ border: 5px solid green;padding: 30px;}
+        fieldset{ border: 5px solid blue;padding: 30px;}
+        input{ border: 5px solid black;padding: 30px;}  
+    </style>
+</head>
+<body>
+    <fieldset>  
+        <legend>event propagation</legend>
+        <input type="button" id="target" value="target">
+    </fieldset>
+    <script>
+        //부모 부터 자식까지 적용되는 capturing도 되고
+        //자식부터 부모로 가는 bubbling도 가능.
+        function handler(event){
+            var phases=['capturing','target','bubbling']
+            console.log(event.target.nodeName , this.nodeName, phases[event.eventPhase-1])
+        };
+        function stopHandler(event){
+            var phases=['capturing','target','bubbling']
+            console.log(event.target.nodeName , this.nodeName, phases[event.eventPhase-1])
+            //event Phase는 capt이면 1이고 bub이면 3이고 가장 말단 element의 핸들러면 2의 값을 가지게 됨.
+            event.stopPropagation();
+        }
+        document.getElementById('target').addEventListener('click',handler,false);  //true는 capturing
+        document.querySelector('fieldset').addEventListener('click',handler,false);
+        document.querySelector('body').addEventListener('click',stopHandler,false); //false는 bubbling
+        document.querySelector('html').addEventListener('click',handler,false);
+    </script>
+</body>
+</html>

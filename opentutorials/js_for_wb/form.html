@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+    <input type="name1" id="target1">
+    <form action="result.html" id="target">
+        <label for="name">name</label><input id="name" type="name"/>
+        <input type="submit"/>
+    </form>
+    <script>
+        var t=document.getElementById('target');
+        t.addEventListener('submit',function(event){
+            if(document.getElementById('name').value.length===0){
+                alert('Name필드의 값이 누락되었습니다.');
+                event.preventDefault();
+            }
+        });
+        var t1=document.getElementById('target1');
+        t1.addEventListener('change',function(event){
+            document.getElementById('result').innerHTML=event.target.value;
+        });
+        // t1.addEventListener('blur',function(event){
+        //     alert('blur');
+        // });
+        // t1.addEventListener('focus',function(event){
+        //     alert('focus');
+        // });
+    </script>
+</body>
+</html>;
